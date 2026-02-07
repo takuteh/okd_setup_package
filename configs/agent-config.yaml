@@ -1,0 +1,32 @@
+apiVersion: v1alpha1
+kind: AgentConfig
+metadata:
+  name: okd-sno
+rendezvousIP: 10.100.0.20          # Masterノードの固定IP
+hosts:
+  - hostname: master0
+    interfaces:
+      - name: enp0s18 #VMのNIC名
+        macAddress: BC:24:11:98:73:CF  # VMのNICのMAC
+    networkConfig:
+      interfaces:
+        - name: enp0s18 #VMのNIC名
+          type: ethernet
+          state: up
+          mac-address: BC:24:11:98:73:CF #VMのNICのMAC
+          ipv4:
+            enabled: true
+            address:
+              - ip: 10.100.0.20       # Masterノードの固定IP
+                prefix-length: 24
+            dhcp: false
+      dns-resolver:
+        config:
+          server:
+            - 10.100.0.1              # DNSサーバー
+      routes:
+        config:
+          - destination: 0.0.0.0/0
+            next-hop-address: 10.100.0.1 # デフォルトゲートウェイ
+            next-hop-interface: enp0s18 # VMのNIC名
+            table-id: 254

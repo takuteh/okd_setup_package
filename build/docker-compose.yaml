@@ -1,0 +1,16 @@
+version: "3"
+services:
+  app:
+    container_name: create-agent-iso
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - OKD_VERSION=${OKD_VERSION}
+    volumes:
+      - ./image_cache:/root/.cache/agent/image_cache
+      - ./file_cache:/root/.cache/agent/file_cache
+      - ../okd:/okd
+    command: ["/usr/local/bin/openshift-install","--dir" ,"/okd" ,"agent" ,"create" ,"image"]
+    privileged: true
+
