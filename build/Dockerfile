@@ -12,8 +12,8 @@ RUN if [ -z "$OKD_VERSION" ]; then \
 
 # Download binary
 RUN microdnf install tar gzip -y 
-RUN curl -L https://github.com/okd-project/okd/releases/download/${ENV_VERSION}/openshift-install-linux-${ENV_VERSION}.tar.gz -o openshift-install-linux.tar.gz
-RUN curl -L https://github.com/okd-project/okd/releases/download/${ENV_VERSION}/openshift-client-linux-${ENV_VERSION}.tar.gz -o openshift-client-linux.tar.gz
+RUN curl -L https://github.com/okd-project/okd/releases/download/${OKD_VERSION}/openshift-install-linux-${OKD_VERSION}.tar.gz -o openshift-install-linux.tar.gz
+RUN curl -L https://github.com/okd-project/okd/releases/download/${OKD_VERSION}/openshift-client-linux-${OKD_VERSION}.tar.gz -o openshift-client-linux.tar.gz
 RUN tar xzf openshift-install-linux.tar.gz
 RUN tar xzf openshift-client-linux.tar.gz
 
