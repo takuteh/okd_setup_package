@@ -28,8 +28,8 @@ set -a
 . ./configs/okd_version.env
 set +a
 if ask_yes_no "OKD Version:${OKD_VERSION} - is this correct?"; then
-	mkdir ./okd
-	cp ./configs/agent-config.yaml ./configs/install-config.yaml ./okd
+	mkdir ./output
+	cp ./configs/agent-config.yaml ./configs/install-config.yaml ./output
 	$COMPOSE -f ./build/docker-compose.yaml up
 else 
 	echo "Aborting..."
